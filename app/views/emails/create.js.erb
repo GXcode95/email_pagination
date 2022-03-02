@@ -1,0 +1,9 @@
+function unmountEmailForm() {
+  let emailForm = document.querySelector('.email-form')
+  emailForm.remove()
+}
+
+<% if @email.errors.empty? %>
+  unmountEmailForm()
+<% end %>
+flash.mount("<%= j render 'layouts/flash' %>")  

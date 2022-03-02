@@ -1,0 +1,13 @@
+<div class="emails-tab">
+  <%= link_to "Reçu (#{@unread})", emails_path, remote: :true, class: "active" %>
+  <%= link_to :Envoyé , emails_path(sended: :true), remote: :true %>
+  <%= link_to new_email_path, remote: true do %>
+    <i class="fa-solid fa-square-plus"></i> Nouveau
+  <% end %>
+</div>
+<div class="email-wrapper" >
+  <%= render "email_list", emails: @emails %>
+</div>
+<div class="pagination-wrapper">
+  <%= render "pagination_menu", page: @page, max_pages: @max_pages%>
+</div>

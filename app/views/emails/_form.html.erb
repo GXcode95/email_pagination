@@ -1,0 +1,21 @@
+  <div class="header">
+    <i class="fa-solid fa-xmark"></i>
+  </div>
+  <%= form_with model: email, local: false do |form| %>
+
+    <% if email.errors.any? %>
+      <div class="alert alert-error">
+        <ul>
+          <% email.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <%= form.email_field :recipient, placeholder: :Destinataire, required: true %>
+      <%= form.text_field :object, placeholder: :Objet, required: true %>
+      <%= form.text_area :content, required: true %>
+      <%= form.hidden_field :sender, value: current_user.email%>
+      <%= form.submit :Envoyer, class: "btn send" %>
+  <% end %>

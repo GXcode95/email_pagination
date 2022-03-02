@@ -1,0 +1,187 @@
+// Place all the styles related to the Emails controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+@import 'vars';
+
+.emails-tab {
+  display:flex;
+  align-items: flex-end;
+  border-bottom: $border;
+  height: 40px;
+  a {
+    padding: 5px 8px;
+    
+    &:not(:last-child){
+      border: $border;
+      border-bottom: none;
+      transition: 0.3s;
+    }
+
+    &:last-child{
+      color: $col-primary;
+    }
+  }
+  .active {
+    background-color:transparentize($col-primary, 0.2);
+    border-color: $col-primary;
+    font-weight: bold;
+    color:white;
+  }
+}
+.emails-list {
+  height: calc(90vh - 50px - 40px);
+  overflow-y: scroll;
+  animation: fade-in 1s;
+
+  .email-row {
+    display:flex;
+    height: 50px;
+
+    border-bottom: $border;
+    &:hover { background-color: $grey-light; }
+    
+    .icon-delete {
+      display:flex;
+      justify-content: center;
+      align-items:center;
+
+      width: 50px;
+      color: $col-error;
+    }
+  }
+
+  .email-card {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .info {
+      display: flex;
+      align-items:center;
+      gap: 10px;
+      width: 99%;
+    }
+
+    height: 100%;
+    width: calc(90vw - 50px);
+
+    .content, .object, .sender{
+      overflow:hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .unread {
+      font-weight: bolder;
+      &.object {
+        color: $col-primary;
+      }
+    }
+    .content {
+      width: 100%;
+      color: $grey;
+    }
+    .date {
+      min-width: 100px;   
+      text-align:right;
+      margin-left: auto;
+    }
+  }
+}
+.pagination-menu {
+  height: 8vh;
+  margin-top: 1vh;
+  text-align:center;
+
+  nav {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90vw;
+    height:calc(100% - 2vh);
+
+    input {
+      width: 40px;
+      text-align:center;
+    }
+
+    a:hover {
+      color: $col-primary;
+    }
+  }
+
+  .disabled {
+    color: $grey;
+    a {
+      cursor: default;
+    }
+  }
+}
+
+.email-show {
+  min-height: calc(100vh - 50px);
+  padding: 5px 20px 0 20px;
+
+  .email-info {
+    border: border;
+    padding: 10px 0;
+    font-size: 0.9rem;
+  }
+
+  .email-content {
+    min-height: 50vh;
+    padding: 20px 0;
+    border: border;
+    font-size: 1.5rem;
+  }
+}
+
+.email-form {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 80vh;
+  width: 80vw;
+  margin: 10vh 0 0 10vw;
+  z-index: 2;
+  
+  animation: 0.3s fade-in;
+
+  .header {
+    background: $gradient-primary;
+    color: white;
+    text-align:end;
+    padding-right: 5px;
+
+    i { cursor: pointer }
+  }
+  
+  form {
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid $col-primary;
+    background:white;
+
+    input, textarea {
+      box-sizing: border-box;
+      width: 100%;
+      border:none;
+      outline:none;
+      padding: 5px 2px;
+    }
+
+    input {
+      border-bottom: $border;
+    }
+
+    textarea {
+      height: 100%;
+      resize: none;
+    }
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

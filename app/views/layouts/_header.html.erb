@@ -1,0 +1,8 @@
+<header>
+  <nav>
+    <%= link_to "Mes mails", emails_path %>
+    <%= link_to destroy_user_session_path, method: :delete, class: "logout" do %>
+      <i class="fa-solid fa-power-off" title="déconnexion"></i>
+    <% end %>
+  </nav>
+</header>

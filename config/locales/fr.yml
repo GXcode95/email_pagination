@@ -1,0 +1,12 @@
+fr:
+  activerecord:
+    models:
+      user: 'utilisateur'
+    attributes:
+      user: 
+        password: 'mot de passe'
+      email: 
+        sender: 'expéditeur'
+        recipient: 'destinataire'
+        object: 'objet'
+        content: 'contenue'

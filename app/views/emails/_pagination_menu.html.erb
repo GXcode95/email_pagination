@@ -1,0 +1,15 @@
+<div class="pagination-menu">
+  <nav>
+    <p class="<%= "disabled" if page <= 1 %>">
+      <%= link_to_if page > 1,"Précedent", emails_path(page: page - 1), remote: true%>
+    </p>
+    <%= form_with url: emails_path, method: :get, remote: true do |form| %>
+      <%= form.label :page %>
+      <%= form.number_field :page, value: "#{page}", max: max_pages, min: 1 %>
+      <span> / <%= max_pages %></span>
+    <% end %>
+    <p class="<%= "disabled" if page >= max_pages %>">
+      <%= link_to_if page < max_pages, "Suivant", emails_path(page: page + 1), remote: true%> 
+    </p>
+  </nav>
+</div>

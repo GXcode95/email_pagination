@@ -1,0 +1,9 @@
+
+function destroy() {
+  let card = document.querySelector('li[data-email="<%= @email.id %>"]')
+  card.remove()
+}
+
+
+destroy()
+window.flash.mount("<%= j render 'layouts/flash' %>")

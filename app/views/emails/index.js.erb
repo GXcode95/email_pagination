@@ -1,0 +1,29 @@
+function updateEmail() {
+  let emails = document.querySelector(".email-wrapper")
+  emails.innerHTML = "<%= j render 'emails/email_list', emails: @emails %>"
+}
+function updatePaginationMenu() {
+  let paginationMenu = document.querySelector(".pagination-wrapper")
+  console.log(paginationMenu)
+  paginationMenu.innerHTML = "<%= j render 'emails/pagination_menu', page: @page, max_pages: @max_pages %>"
+}
+function updateTabs() {
+  let received_link = document.querySelector(".emails-tab a:first-child")
+  let sended_link = document.querySelector(".emails-tab a:nth-child(2)")
+  
+  <% if @sended %>
+    received_link.classList.remove("active")
+    sended_link.classList.add("active")
+  <% else %>
+    received_link.classList.add("active")
+    sended_link.classList.remove("active")
+  <% end %>
+}
+
+function updatePage() {
+  updateEmail()
+  updatePaginationMenu()
+  updateTabs()
+}
+
+updatePage()

@@ -1,0 +1,15 @@
+function mountEmailForm() {
+  if (document.querySelector('.email-form')) return
+  
+  let emaiLForm = document.createElement('div')
+  emaiLForm.classList.add('email-form')
+  emaiLForm.innerHTML = "<%= j render "emails/form", email: @email %>"
+  document.body.appendChild(emaiLForm)
+
+  let closeBtn = emaiLForm.querySelector(".fa-xmark")
+  closeBtn.addEventListener("click", (e) => {
+    emaiLForm.remove()
+  })
+}
+
+mountEmailForm()

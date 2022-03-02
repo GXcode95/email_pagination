@@ -1,0 +1,14 @@
+<div class="email-show">
+  <%= link_to emails_path, class: "link" do %>
+    <i class="fa-solid fa-arrow-left"></i> Retour
+  <% end %>
+  <h1><%= @email.object %></h1>
+  <div class="email-info">
+    <p>Expéditeur: <%= @email.sender %></p>
+    <p>Destinataire: <%= @email.recipient %></p>
+    <p>Recu le: <%= @email.full_date %></p>
+  </div>
+  <div class="email-content">
+    <p><%= @email.content %></p>
+  </div>
+</div>

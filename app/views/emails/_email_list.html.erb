@@ -1,0 +1,31 @@
+<ul class="emails-list">
+  <% if emails.any? %>
+    <% emails.each do |email| %>
+      <li class="email-row" data-email="<%= email.id %>">
+        <%= link_to email, method: :delete,
+                            data: { confirm: "Voulez vous vraiment supprimer cet email ?" },
+                            class: "icon-delete",
+                            remote: true do %>
+          <i class="fa-solid fa-trash-can" title="supprimer"></i>
+        <% end %>
+
+        <%= link_to email_path(email) do %>
+          <div class="email-card">       
+            <div class="info">
+              <p class="sender <%= "unread" unless email.read || email.is_author?(current_user) %>">
+                <%= email.is_author?(current_user) ? email.recipient : email.sender %>
+              </p>
+              <p class="object <%= "unread" unless email.read || email.is_author?(current_user)%>">
+                <%= email.object %>
+              </p>
+              <p class="date">
+                <%= email.date %>
+              </p>
+            </div>
+            <p class="content" ><%= email.content %></p>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
