@@ -2,10 +2,10 @@ class Email < ApplicationRecord
 
   validates :sender, presence: true, format: { 
                                       with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/,
-                                      message: "email adress please" }
+                                      message: "veuillez rentrez une adresse email valide." }
   validates :recipient, presence: true, format: {
                                           with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/,
-                                          message: "email adress please" }
+                                          message: "veuillez rentrez une adresse email valide." }
   validates :content, presence: true
   validates :object, presence: true, length: { maximum: 90 }
 
@@ -29,7 +29,7 @@ class Email < ApplicationRecord
   end
 
   def self.unread_count(user)
-    Email.where(recipient: user.email).where(read: false).size
+    Email.where(recipient: user.email, read: false).size
   end
 
 end

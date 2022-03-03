@@ -5,7 +5,7 @@
     </p>
     <%= form_with url: emails_path, method: :get, remote: true do |form| %>
       <%= form.label :page %>
-      <%= form.number_field :page, value: "#{page}", max: max_pages, min: 1 %>
+      <%= form.number_field :page, value: page, max: max_pages, min: 1 %>
       <span> / <%= max_pages %></span>
     <% end %>
     <p class="<%= "disabled" if page >= max_pages %>">

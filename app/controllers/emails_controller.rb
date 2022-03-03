@@ -1,5 +1,5 @@
 class EmailsController < ApplicationController
-  before_action :set_email, only: %i[ show destroy ]
+  before_action :set_email, only: %i[ show edit destroy ]
   include Pagination
 
   PAGE_SIZE = 20
@@ -18,10 +18,7 @@ class EmailsController < ApplicationController
   end
 
   def show
-    unless @email.read
-      @email.read = true
-      @email.save
-    end
+    @emai.update(read: true) unless @email.read
   end
 
   def new
@@ -36,7 +33,7 @@ class EmailsController < ApplicationController
   def create
     @email = Email.new(email_params)
     if @email.save
-      flash[:success] = "Email envoyé"
+      flash[:success] = "Email envoyé."
       respond_to do |format|
         format.html { redirect_to email_url(@email) }
         format.js {}
@@ -49,9 +46,23 @@ class EmailsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @patate.update(patate_params)
+      flash[:notice] = "Email mis à jour avec succès."
+      redirect_to patate_url(@patate) 
+    else
+      flash[:error] = "Impossible d'actualiser l'email."
+      render :edit
+    end
+  end
+
   def destroy
     @email.destroy
-    flash[:success] = "Email supprimé"
+    flash[:success] = "Email supprimé."
+
     respond_to do |format|
       format.html { redirect_to emails_url }
       format.js {}
